@@ -3,17 +3,17 @@
     "Author": "Local",
     "Name": "AetherArcade",
     "InternalName": "AetherArcade",
-    "AssemblyVersion": "0.1.0.0",
-    "Description": "独立桌游馆：本地五子棋，可选连接用户自选 HTTPS ChatCompletions 接口进行角色文字点评。启用后会外发角色人设与棋局摘要；临时密钥仅保存在内存。",
-    "Punchline": "本地五子棋与可选角色点评",
+    "AssemblyVersion": "0.2.0.0",
+    "Description": "独立桌游馆：用户执黑，API 角色执白，支持局内聊天和 GET 模型列表。启用后外发角色人设、棋局及有限对话；临时密钥仅保存在内存。",
+    "Punchline": "API 角色五子棋与局内聊天",
     "ApplicableVersion": "any",
     "DalamudApiLevel": 15,
     "LoadPriority": 0,
     "Tags": ["game", "gomoku"],
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkInstall": "https://github.com/13603025133s-lgtm/AetherArcade-Releases/releases/download/v0.1.0/AetherArcade-0.1.0.zip",
-    "DownloadLinkUpdate": "https://github.com/13603025133s-lgtm/AetherArcade-Releases/releases/download/v0.1.0/AetherArcade-0.1.0.zip",
-    "DownloadLinkTesting": "https://github.com/13603025133s-lgtm/AetherArcade-Releases/releases/download/v0.1.0/AetherArcade-0.1.0.zip"
+    "DownloadLinkInstall": "https://github.com/13603025133s-lgtm/AetherArcade-Releases/releases/download/v0.2.0/AetherArcade-0.2.0.zip",
+    "DownloadLinkUpdate": "https://github.com/13603025133s-lgtm/AetherArcade-Releases/releases/download/v0.2.0/AetherArcade-0.2.0.zip",
+    "DownloadLinkTesting": "https://github.com/13603025133s-lgtm/AetherArcade-Releases/releases/download/v0.2.0/AetherArcade-0.2.0.zip"
   }
 ]
