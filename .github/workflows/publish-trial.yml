@@ -1,0 +1,33 @@
+name: Publish existing AetherArcade ZIP
+on:
+  push:
+    branches: [main]
+    paths: ['release-payload/AetherArcade-0.1.0.zip.b64']
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode and verify existing ZIP
+        run: |
+          python - <<'PY'
+          import base64
+          import hashlib
+          import zipfile
+          from pathlib import Path
+          data = base64.b64decode(Path('release-payload/AetherArcade-0.1.0.zip.b64').read_text().strip(), validate=True)
+          expected = 'c96b09bc6ae29735357af125eb0160bda8888343326fcdec545807cd5510bc89'
+          assert hashlib.sha256(data).hexdigest() == expected, 'ZIP SHA-256 mismatch'
+          Path('AetherArcade-0.1.0.zip').write_bytes(data)
+          with zipfile.ZipFile('AetherArcade-0.1.0.zip') as archive:
+              assert sorted(archive.namelist()) == ['AetherArcade.deps.json', 'AetherArcade.dll', 'AetherArcade.json']
+          print('Verified ZIP SHA-256:', expected)
+          PY
+      - name: Publish ZIP asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release create v0.1.0 --target "$GITHUB_SHA" --title 'AetherArcade 0.1.0' --notes 'Existing precompiled AetherArcade binary. Dalamud API 15, assembly version 0.1.0.0. No compilation is performed. SHA256: c96b09bc6ae29735357af125eb0160bda8888343326fcdec545807cd5510bc89. In-game behavior has not been verified by this publishing workflow.' AetherArcade-0.1.0.zip
